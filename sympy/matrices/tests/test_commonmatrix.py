@@ -1251,6 +1251,7 @@ def test_issue_18956():
 
 
 def test__eq__():
+    print("test__eq__")
     class My(object):
         def __iter__(self):
             yield 1
@@ -1264,3 +1265,39 @@ def test__eq__():
         def _sympy_(self):
             return Matrix(self)
     assert a == My_sympy()
+
+def test_rotate_90(): # added 4 functions to increase coverage of rot90 function in common.py - Janis 
+    print("test_rotate")
+    
+    a = Matrix([[1, 2], [3, 4]])
+    
+    a_rotated = MatrixOperations.rot90(a)
+    
+    print(a_rotated)
+
+    assert a_rotated == Matrix([[3, 1], [4, 2]])
+
+def test_rotate_180():
+
+    a = Matrix([[1, 2], [3, 4]])
+    
+    a_rotated = MatrixOperations.rot90(a, 2)
+    
+    assert a_rotated == Matrix([[4, 3], [2, 1]])
+    
+def test_rotate_270():
+
+    a = Matrix([[1, 2], [3, 4]])
+
+    a_rotated = MatrixOperations.rot90(a, 3)
+    
+    assert a_rotated == Matrix([[2, 4], [1, 3]])
+
+def test_rotate_0():
+    
+    a = Matrix([[1, 2], [3, 4]])
+
+    a_rotated = MatrixOperations.rot90(a, 0)
+    
+    assert a_rotated == a 
+

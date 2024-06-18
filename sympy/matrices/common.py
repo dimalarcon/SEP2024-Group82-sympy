@@ -2409,6 +2409,8 @@ class MatrixOperations(MatrixRequired):
         [b, a]])
         """
 
+        print("MatrixOperations.rot90")
+
         mod = k%4
         if mod == 0:
             return self
