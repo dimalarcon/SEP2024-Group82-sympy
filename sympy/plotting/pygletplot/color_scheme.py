@@ -5,16 +5,27 @@ from .util import interpolate, rinterpolate, create_bounds, update_bounds
 from sympy.utilities.iterables import sift
 
 
+branch_coverage = {
+    "branch_1" : False,
+    "branch_2" : False,
+    "branch_3" : False,
+    "branch_4" : False,
+
+}
+
 class ColorGradient:
     colors = [0.4, 0.4, 0.4], [0.9, 0.9, 0.9]
     intervals = 0.0, 1.0
 
     def __init__(self, *args):
         if len(args) == 2:
+            branch_coverage["branch_1"] = True
             self.colors = list(args)
             self.intervals = [0.0, 1.0]
         elif len(args) > 0:
+            branch_coverage["branch_2"] = True
             if len(args) % 2 != 0:
+                branch_coverage["branch_3"] = True
                 raise ValueError("len(args) should be even")
             self.colors = [args[i] for i in range(1, len(args), 2)]
             self.intervals = [args[i] for i in range(0, len(args), 2)]
